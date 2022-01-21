@@ -1,0 +1,1190 @@
+<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+    <schema name="folderequipement" prefix="folderequipement" override="true" src="data/schemas/folderequipement.xsd" />
+    <schema name="Document_equipe" prefix="Document_equipe" override="true" src="data/schemas/Document_equipe.xsd" />
+    <schema name="Document_searchequipe" prefix="Document_searchequipe" override="true" src="data/schemas/Document_searchequipe.xsd" />
+</extension>
+
+<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+    <doctype name="folderequipement" extends="Folder">
+      <schema name="folderequipement" />
+      <schema name="dublincore" />
+      <schema name="common" />
+      <schema name="uid" />
+      <facet name="Folderish" />
+    </doctype>
+    <doctype name="Document_equipe" extends="File">
+      <schema name="Document_equipe" />
+      <schema name="dublincore" />
+      <schema name="common" />
+      <schema name="uid" />
+    </doctype>
+    <doctype name="Document_searchequipe" extends="Document">
+      <facet name="ContentViewDisplay" />
+      <facet name="SavedSearch" />
+      <facet name="HiddenInNavigation" />
+      <schema name="Document_searchequipe" />
+    </doctype>
+</extension>
+
+<extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
+    <type id="folderequipement">
+      <label>label.dossier.equipement</label> 
+      <icon>/img/dossier_equipement.png</icon>
+      <bigIcon>/img/dossier_equipement.png</bigIcon>
+      <description>Dossier Equipement</description>
+      <default-view>view_documents</default-view>
+      <subtypes>
+        <type>Document_equipe</type>
+      </subtypes>
+      <layouts mode="create">
+        <layout>layout@folderequipement-create</layout>
+         <layout>heading_classP</layout>
+      </layouts>
+      <layouts mode="edit">
+        <layout>layout@folderequipement-edit</layout>
+         <layout>heading_classP</layout>
+      </layouts>
+      <layouts mode="view">
+        <layout>layout@folderequipement-view</layout>
+         <layout>heading_classP</layout>
+      </layouts>
+      <contentViews category="content">
+        <contentView showInExportView="false">Document_equipe</contentView>
+      </contentViews>
+      <contentViews category="trash_content">
+        <contentView showInExportView="false">document_trash_content</contentView>
+      </contentViews>
+    </type>
+    <type id="Workspace">
+      <subtypes>
+        <type>folderequipement</type>
+      </subtypes>
+    </type>
+    <type id="Folder">
+      <subtypes>
+        <type>folderequipement</type>
+      </subtypes>
+    </type>
+    <type id="Document_equipe" remove="true" />
+    <type id="Document_equipe">
+      <label>label.document.equipe</label>
+      <icon>/img/equipement.png</icon>
+      <bigIcon>/img/equipement.png</bigIcon>
+      <description>label.equipement</description>
+      <default-view>view_documents</default-view>
+      <layouts mode="create">
+        <layout>layout@Document_equipe-create</layout>
+        <layout>file</layout>
+      </layouts>
+      <layouts mode="edit">
+        <layout>layout@Document_equipe-edit</layout>
+        <layout>file</layout>
+      </layouts>
+      <layouts mode="view">
+        <layout>layout@Document_equipe-view</layout>
+         <layout>heading_classP</layout>
+      </layouts>
+    </type>
+    <type id="Folder">
+      <subtypes>
+        <type>Document_equipe</type>
+      </subtypes>
+    </type>
+    
+    <type id="Document_searchequipe">
+      <label>DefaultSearch</label>
+      <icon>/icons/document_cv.png</icon>
+      <bigIcon>/icons/document_cv.png</bigIcon>
+      <description>DefaultSearch.description</description>
+      <default-view>home_view_documents</default-view>
+      <layouts mode="any">
+        <layout>heading_classP</layout>
+        <layout>Document_searchequipe@cvLayout</layout>
+      </layouts>
+    </type>
+</extension>
+
+<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
+    <layout name="layout@folderequipement-create">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget />
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">Label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="required">true</property>
+        </properties>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:description</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+    </layout>
+    <layout name="layout@folderequipement-edit">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget />
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">Label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="required">true</property>
+        </properties>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:description</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+    </layout>
+    <layout name="layout@folderequipement-view">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget />
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">Label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:description</field>
+        </fields>
+      </widget>
+    </layout>
+    <layout name="layout@Document_equipe-create">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>num_equipement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>departement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>date_mise_service</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>Statut</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>demandes</widget>
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="required">true</property>
+        </properties>
+      </widget>
+      <widget name="num_equipement" type="int">
+        <labels>
+          <label mode="any">label.num_equipement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:num_equipement</field>
+        </fields>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:description</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="departement" type="text">
+        <labels>
+          <label mode="any">label.departement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:departement</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="date_mise_service" type="datetime">
+        <labels>
+          <label mode="any">label.date.miseouvre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:date_mise_service</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="Statut" type="template">
+        <labels>
+          <label mode="any">label.statut</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:Statut</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="template">/widgets/listeEtat.xhtml</property>
+        </properties>
+      </widget>
+      <widget name="demandes" type="list">
+        <labels>
+          <label mode="any">label.demandes</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:demandes</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="addLabel">label.da.addrow</property>
+          <property name="display">table</property>
+        </properties>
+        <subWidgets>
+          <widget name="nom" type="template">
+            <labels>
+              <label mode="any">label.nom</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>nom</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/nom_demandeur.xhtml</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="departement" type="text">
+            <labels>
+              <label mode="any">label.departement</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>departement</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">true</property>
+            </properties>
+          </widget>
+          <widget name="date" type="template">
+            <labels>
+              <label mode="any">label.date</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/date_debut.xhtml</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="date_debut" type="datetime">
+            <labels>
+              <label mode="any">label.date_debut</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date_debut</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">true</property>
+            </properties>
+          </widget>
+          <widget name="date_fin" type="datetime">
+            <labels>
+              <label mode="any">label.date_fin</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date_fin</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">true</property>
+            </properties>
+          </widget>
+          <widget name="statut" type="template">
+            <labels>
+              <label mode="any">label.statut</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>statut</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/listeEtat.xhtml</property>
+              <property name="required">true</property>
+            </properties>
+          </widget>
+        </subWidgets>
+      </widget>
+    </layout>
+    <layout name="layout@Document_equipe-edit">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>num_equipement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>departement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>date_mise_service</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>Statut</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>demandes</widget>
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">#{currentUser.isMemberOf('RESPONSABLE_EQUIPEMENT')?'edit':'view'}</mode>
+        </widgetModes>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="required">true</property>
+        </properties>
+      </widget>
+      <widget name="num_equipement" type="int">
+        <labels>
+          <label mode="any">label.num_equipement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:num_equipement</field>
+        </fields>
+        <widgetModes>
+          <mode value="edit">view</mode>
+        </widgetModes>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:description</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">#{currentUser.isMemberOf('RESPONSABLE_EQUIPEMENT')?'edit':'view'}</mode>
+        </widgetModes>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="departement" type="text">
+        <labels>
+          <label mode="any">label.departement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:departement</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">#{currentUser.isMemberOf('RESPONSABLE_EQUIPEMENT')?'edit':'view'}</mode>
+        </widgetModes>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="date_mise_service" type="datetime">
+        <labels>
+          <label mode="any">label.date.miseouvre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:date_mise_service</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">#{currentUser.isMemberOf('RESPONSABLE_EQUIPEMENT')?'edit':'view'}</mode>
+        </widgetModes>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="Statut" type="template">
+        <labels>
+          <label mode="any">label.statut</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:Statut</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">#{currentUser.isMemberOf('RESPONSABLE_EQUIPEMENT')?'edit':'view'}</mode>
+        </widgetModes>
+        <properties widgetMode="edit">
+          <property name="template">/widgets/listeEtat.xhtml</property>
+        </properties>
+      </widget>
+      <widget name="demandes" type="list">
+        <labels>
+          <label mode="any">label.demandes</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:demandes</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="addLabel">label.da.addrow</property>
+          <property name="display">table</property>
+        </properties>
+        <subWidgets>
+          <widget name="nom" type="template">
+            <labels>
+              <label mode="any">label.nom</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>nom</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/nom_demandeur.xhtml</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="departement" type="text">
+            <labels>
+              <label mode="any">label.departement</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>departement</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="date" type="template">
+            <labels>
+              <label mode="any">label.date</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/date_debut.xhtml</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="date_debut" type="datetime">
+            <labels>
+              <label mode="any">label.date_debut</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date_debut</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">true</property>
+            </properties>
+          </widget>
+          <widget name="date_fin" type="datetime">
+            <labels>
+              <label mode="any">label.date_fin</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>date_fin</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="required">false</property>
+            </properties>
+          </widget>
+          <widget name="statut" type="template">
+            <labels>
+              <label mode="any">label.statut</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>statut</field>
+            </fields>
+            <properties widgetMode="edit">
+              <property name="styleClass">StyleProduit</property>
+              <property name="template">/widgets/listeEtat.xhtml</property>
+            </properties>
+          </widget>
+        </subWidgets>
+      </widget>
+    </layout>
+    <layout name="layout@Document_equipe-view">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>num_equipement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>description</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>departement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>date_mise_service</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>Statut</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>demandes</widget>
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>dc:title</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+          <property name="required">true</property>
+        </properties>
+      </widget>
+      <widget name="num_equipement" type="int">
+        <labels>
+          <label mode="any">label.num_equipement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:num_equipement</field>
+        </fields>
+        <widgetModes>
+          <mode value="edit">view</mode>
+        </widgetModes>
+      </widget>
+      <widget name="description" type="textarea">
+        <labels>
+          <label mode="any">label.description</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:description</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="departement" type="text">
+        <labels>
+          <label mode="any">label.departement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:departement</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="date_mise_service" type="datetime">
+        <labels>
+          <label mode="any">label.date.miseouvre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:date_mise_service</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="Statut" type="text">
+        <labels>
+          <label mode="any">label.statut</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:Statut</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="demandes" type="template">
+        <labels>
+          <label mode="any">label.demandes</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_equipe:demandes</field>
+        </fields>
+        <properties widgetMode="any">
+          <property name="template">/widgets/Documents_Equipe.xhtml</property>
+        </properties>
+        <subWidgets>
+          <widget name="nom" type="template">
+            <labels>
+              <label mode="any">label.departement</label>
+            </labels>
+            <translated>true</translated>
+            <fields>
+              <field>nom</field>
+            </fields>
+          </widget>
+        </subWidgets>
+      </widget>
+    </layout>
+    <layout name="Document_searchequipe@cvLayout">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml</template>
+      </templates>
+      <rows>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>title</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>num_equipement</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>Statut</widget>
+        </row>
+        <row>
+          <properties mode="any">
+            <property name="nxl_colspan_0">1</property>
+          </properties>
+          <widget>departement</widget>
+        </row>
+      </rows>
+      <widget name="title" type="text">
+        <labels>
+          <label mode="any">label.titre</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_searchequipe:title</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="num_equipement" type="int">
+        <labels>
+          <label mode="any">label.num_equipement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_searchequipe:num_equipement</field>
+        </fields>
+      </widget>
+      <widget name="departement" type="text">
+        <labels>
+          <label mode="any">label.departement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_searchequipe:departement</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="date_fin" type="datetime">
+        <labels>
+          <label mode="any">label.date.fin</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_searchequipe:date_fin</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+      <widget name="Statut" type="text">
+        <labels>
+          <label mode="any">label.statut</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>Document_searchequipe:Statut</field>
+        </fields>
+        <properties widgetMode="edit">
+          <property name="styleClass">dataInputText</property>
+        </properties>
+      </widget>
+    </layout>
+    <layout name="Document_searchequipe@cvListingLayout">
+      <templates>
+        <template mode="any">/layouts/layout_listing_ajax_template.xhtml</template>
+        <template mode="edit_columns">/layouts/layout_column_selection_template.xhtml</template>
+        <template mode="edit_sort_infos">/layouts/layout_sort_infos_template.xhtml</template>
+        <template mode="edit_sort_infos_map">/layouts/layout_sort_infos_template.xhtml</template>
+        <template mode="csv">/layouts/layout_listing_csv_template.xhtml</template>
+        <template mode="pdf">/layouts/layout_listing_pdf_template.xhtml</template>
+      </templates>
+      <properties mode="any">
+        <property name="showListingHeader">true</property>
+        <property name="showRowEvenOddClass">true</property>
+      </properties>
+      <properties mode="edit_columns">
+        <property name="availableElementsLabel">label.selection.availableColumns</property>
+        <property name="selectedElementsLabel">label.selection.selectedColumns</property>
+        <property name="selectedElementsHelp" />
+        <property name="selectSize">10</property>
+        <property name="displayAlwaysSelectedColumns">false</property>
+      </properties>
+      <properties mode="edit_sort_infos">
+        <property name="newSortInfoTemplate">#{documentSearchActions.newSortInfo}</property>
+        <property name="required">false</property>
+      </properties>
+      <properties mode="edit_sort_infos_map">
+        <property name="newSortInfoTemplate">#{documentSearchActions.newSortInfoMap}</property>
+        <property name="required">false</property>
+      </properties>
+      <columns>
+        <column name="selection" alwaysSelected="true">
+          <properties mode="any">
+            <property name="isListingSelectionBox">true</property>
+            <property name="useFirstWidgetLabelAsColumnHeader">false</property>
+            <property name="columnStyleClass">iconColumn</property>
+          </properties>
+          <properties mode="csv">
+            <property name="isHidden">true</property>
+          </properties>
+          <properties mode="pdf">
+            <property name="isHidden">true</property>
+          </properties>
+          <widget>listing_ajax_selection_box</widget>
+        </column>
+        <column name="listing_title_link">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label">Title with link</property>
+            <property name="sortPropertyName">dc:title</property>
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <widget>listing_title_link</widget>
+        </column>
+        <column name="num_equipement">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label">label.num_equipement</property>
+            <property name="sortPropertyName">Document_equipe:num_equipement</property>
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <widget>num_equipement</widget>
+        </column>
+        <column name="Statut">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label">label.equipe.statut</property>
+            <property name="sortPropertyName">Document_equipe:Statut</property>
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <widget>Statut</widget>
+        </column>
+        <column name="datefin">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label">label.datefin</property>
+            <property name="sortPropertyName">Document_equipe:datefin</property>
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <widget>datefin</widget>
+        </column>
+        <column name="departement">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label">IF</property>
+            <property name="sortPropertyName">Document_equipe:departement</property>
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <widget>departement</widget>
+        </column>
+        <column name="nxl_unknown_col" selectedByDefault="false">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label" />
+            <property name="sortPropertyName" />
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+        </column>
+        <column name="nxl_unknown_col_1" selectedByDefault="false">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label" />
+            <property name="sortPropertyName" />
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+        </column>
+        <column name="nxl_unknown_col_2" selectedByDefault="false">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label" />
+            <property name="sortPropertyName" />
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+        </column>
+        <column name="nxl_unknown_col_3" selectedByDefault="false">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label" />
+            <property name="sortPropertyName" />
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+        </column>
+        <column name="nxl_unknown_col_4" selectedByDefault="false">
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="columnStyleClass" />
+            <property name="label" />
+            <property name="sortPropertyName" />
+          </properties>
+          <properties mode="edit_sort_infos">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+          <properties mode="edit_sort_infos_map">
+            <property name="showInSortInfoSelection">true</property>
+          </properties>
+        </column>
+      </columns>
+       <widget name="listing_title_link" type="listing_title_link">
+        <labels>
+          <label mode="any">Title</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data</field>
+          <field>data.ref</field>
+          <field>data.dc.description</field>
+          <field>data.file.content</field>
+          <field>data.file.content.filename</field>
+        </fields>
+      </widget>
+      <widget name="Statut" type="text">
+        <labels>
+          <label mode="any">label.equipement.etat</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['Document_equipe']['Statut']</field>
+        </fields>
+      </widget>
+      <widget name="modified" type="text">
+        <labels>
+          <label mode="any">label.facturefournisseur.lastmodified</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['dc']['modified']</field>
+        </fields>
+      </widget>
+      <widget name="num_equipement" type="int">
+        <labels>
+          <label mode="any">label.num_equipement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['Document_equipe']['num_equipement']</field>
+        </fields>
+      </widget>
+      <widget name="type_facture" type="text">
+        <labels>
+          <label mode="any">label.facturefournisseur.typefacture</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['FF1']['type_facture']</field>
+        </fields>
+      </widget>
+      <widget name="datefin" type="datetime">
+        <labels>
+          <label mode="any">label.datefin</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['Document_equipe']['datefin']</field>
+        </fields>
+      </widget>
+      <widget name="departement" type="text">
+        <labels>
+          <label mode="any">label.departement</label>
+        </labels>
+        <translated>true</translated>
+        <fields>
+          <field>data['Document_equipe']['departement']</field>
+        </fields>
+      </widget>
+    </layout>
+</extension>
+

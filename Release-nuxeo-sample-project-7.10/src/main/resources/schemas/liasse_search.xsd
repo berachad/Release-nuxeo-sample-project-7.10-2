@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://sample.nuxeo.org/sample/schemas/liasse_search/"
+  xmlns:lss="http://sample.nuxeo.org/sample/schemas/liasse_search/">
+
+</xs:schema>

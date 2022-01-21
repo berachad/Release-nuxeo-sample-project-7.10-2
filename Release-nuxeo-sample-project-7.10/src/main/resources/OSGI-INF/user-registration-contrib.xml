@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<component name="edoc360.invitation.user">
+	<require>org.nuxeo.ecm.user.invite.core.service.contrib</require>
+  <require>org.nuxeo.ecm.user.invite.core.types.contrib</require>
+
+  <extension target="org.nuxeo.ecm.user.invite.UserInvitationService"
+             point="configuration">
+     <configuration merge="true">
+      <requestDocType>UserInvitation</requestDocType>
+      <container>
+        <docType>UserInvitationContainer</docType>
+        <parentPath>/management/</parentPath>
+        <name>invitationRequests</name>
+        <title>Invitation Requests Container</title>
+      </container>
+      <validationEmail>
+        <title>Invitation e-Doc 360</title>
+        <template>skin/views/userRegistration/EmailInviteDo.ftl</template>
+      </validationEmail>
+      <reviveEmail>
+        <title>You are invited to access Nuxeo</title>
+        <template>skin/views/userRegistration/ReviveEmailTemplate.ftl</template>
+      </reviveEmail>
+      <enterPasswordUrl>site/userInvitation/enterpassword/</enterPasswordUrl>
+      <validationRelUrl>site/userInvitation/validate</validationRelUrl>
+    </configuration>
+  </extension>
+
+</component>

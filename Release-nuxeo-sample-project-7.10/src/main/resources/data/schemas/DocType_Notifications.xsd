@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  xmlns:nxs="http://www.nuxeo.org/ecm/project/schemas/DocType_Notifications"   xmlns:nxsv="http://www.nuxeo.org/ecm/schemas/core/validation/"   xmlns:ref="http://www.nuxeo.org/ecm/schemas/core/external-references/" targetNamespace="http://www.nuxeo.org/ecm/project/schemas/DocType_Notifications">
+    <xs:simpleType name="stringArrayType">
+        <xs:list itemType="xs:string" />
+    </xs:simpleType>
+     <xs:element name="Notifications" type="nxs:Notifications_ListType"/>
+
+  <xs:complexType name="Notifications_ListType">
+    <xs:sequence>
+      <xs:element name="item" type="nxs:Notifications_Type" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Notifications_Type">
+    <xs:sequence>
+    <xs:element name="name_Notification" type="xs:string"/>
+    <xs:element name="jours_notification" type="xs:integer"/>
+    <xs:element name="template_notification" type="xs:string"/> 
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="title" type="xs:string"/> 
+  <xs:element name="titre_notification" type="xs:string"/> 
+   <xs:element name="lien_notif" type="xs:string"/> 
+   <xs:element name="select_users_groups_fields" type="nxs:stringArrayType" />
+
+
+<!-- Event Notification 
+ -->  
+ <xs:element name="date_calcule" type="xs:date"/>  
+  <xs:element name="template_email" type="xs:date"/> 
+  
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.automation.core.OperationContribution">
+	<extension point="operations"
+		target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
+		<operation class="org.nuxeo.project.sample.abandondocument" />
+		<operation class="org.nuxeo.project.sample.abandondocumentContrat" />
+		<operation class="org.nuxeo.project.sample.PrintInfo" />
+		<operation class="org.nuxeo.project.sample.PrintInfoParallel" />
+		<operation class="org.nuxeo.project.sample.updatedocument" />
+		<operation class="org.nuxeo.project.sample.updatedocumentreject" />
+		<operation class="org.nuxeo.project.sample.updatedocumentparallel" />
+		<operation class="org.nuxeo.project.sample.updatedocumentparallelreject" />
+		<operation class="org.nuxeo.project.sample.updatestatusparallelvalid" />
+		<operation class="org.nuxeo.project.sample.updatestatusparallelreject" />
+		
+		 <operation class="org.nuxeo.project.sample.updatedocumentContrat" />
+		<operation class="org.nuxeo.project.sample.updatedocumentrejectContrat" />
+		<operation class="org.nuxeo.project.sample.updatestatusparallelvalidContrat"/>
+		<operation class="org.nuxeo.project.sample.updatestatusparallelrejectContrat"/>
+		<operation class="org.nuxeo.project.sample.PrintInfoContrat" />
+		<operation class="org.nuxeo.project.sample.PrintInfoParallelContrat" />
+		<operation class="org.nuxeo.project.sample.updatedocumentparallelrejectContrat"/>
+		<operation class="org.nuxeo.project.sample.updatedocumentparallelContrat"/>
+       
+       <!--AirLiquide-->
+        <operation class="org.nuxeo.project.sample.WorklistExportDemo" />
+		<operation class="org.nuxeo.project.sample.WorklistExportDemoV2" />
+		<operation class="org.nuxeo.project.sample.WorklistExportDemoV3" />
+		<!--  <operation class="org.nuxeo.project.sample.ConvertARsSelectedPdf"/>-->
+		<operation class="org.nuxeo.project.sample.SignAllInvoices"/>
+		<operation class="org.nuxeo.project.sample.ConcatenationAREtFacture"/>
+		<!-- <operation class="org.nuxeo.project.sample.MoveInvoices"/>-->
+       <!--/AirLiquide-->
+		
+	
+	</extension>
+</component>

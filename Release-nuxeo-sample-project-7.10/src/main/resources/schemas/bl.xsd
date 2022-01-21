@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://sample.nuxeo.org/sample/schemas/bl/"
+  xmlns:bl="http://sample.nuxeo.org/sample/schemas/bl/">
+  
+  <xs:element name="num_bl" type="xs:string"/>
+  <xs:element name="date" type="xs:date"/>
+  <xs:element name="client" type="xs:string"/>
+  <xs:element name="code_client" type="xs:string"/>
+  <xs:element name="ref" type="xs:string"/>
+  <xs:element name="quantite" type="xs:string"/>
+  <xs:element name="montant_total" type="xs:string"/>
+  <xs:element name="prix_unitaire" type="xs:string"/>
+  <xs:element name="transporteur" type="xs:string"/>
+  <xs:element name="code_transporteur" type="xs:string"/>
+
+</xs:schema>

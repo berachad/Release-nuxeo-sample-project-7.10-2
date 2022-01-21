@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.project.sample.actions">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="tab_book_view" link="/incl/tabs/sample_book_view.xhtml"
+      enabled="true" label="Book" icon="/icons/file.gif" order="9">
+      <category>VIEW_ACTION_LIST</category>
+      <filter id="book_filter">
+        <rule grant="true">
+          <type>Book</type>
+        </rule>
+      </filter>
+    </action>
+
+    <action id="tab_folder_books_list" link="/incl/tabs/folder_books_view.xhtml"
+      enabled="true" label="Books" icon="/icons/file.gif" order="15">
+      <category>VIEW_ACTION_LIST</category>
+      <filter id="workspace_books_filter">
+        <rule grant="true">
+          <type>Folder</type>
+          <type>Workspace</type>
+        </rule>
+      </filter>
+    </action>
+    <action id="testConvertPdf" label="label.contrat.render" enabled="true" order="0" type="link" icon="/img/pdf.png" immediate="false" link="#{operationActionBean.doOperation('testConvertPdf')}">
+        <category>DOCUMENT_UPPER_ACTION</category>
+          <filter id="filter@ConversionPdfSelected">
+             <rule grant="true">
+               <type>FolderContrat</type>
+               <type>Dossier_attest_travail</type>
+               <type>Dossier_bon_commande</type>
+                  <!--<condition>currentUser.isMemberOf('CSC')</condition>-->
+              </rule>
+          </filter>
+    </action>
+    
+   <!-- AirLiquide -->
+
+  </extension>
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="chains">
+    <chain id="testConvertPdf">
+        <operation id="Document.ConvertFacturesSelectedPdf"/>
+    </chain>
+  </extension>
+  <!--AirLiquide--> 
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+	
+	<filter id="hasPDFPreview">
+      <rule grant="true">
+        <condition>#{conversionActions.isExportableToPDF(blob)}</condition>
+        <condition>#{blob != null and conversionActions.isPDF(blob)}</condition>
+      </rule>
+    </filter>
+	
+    <filter id="filter@wf@ParallelDocumentReview" append="true">
+      <rule grant="true">
+        <type>bc</type>
+        <type>accuse_de_reception</type>
+        <type>facture</type>
+        <type>reglement</type>
+      </rule>
+    </filter>
+    <filter id="filter@SerialDocumentReview" append="true">
+      <rule grant="true">
+        <type>bc</type>
+        <type>accuse_de_reception</type>
+        <type>facture</type>
+        <type>reglement</type>
+      </rule>
+     </filter>
+ </extension>
+<!--/AirLiquide--> 
+</component>

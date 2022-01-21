@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.project.sample.contentview.contrib">
+
+  <extension target="org.nuxeo.ecm.platform.ui.web.ContentViewService"
+    point="contentViews">
+
+<!--AirLiquide -->
+
+<contentView name="parent_accuse_de_reception_content">
+
+      <title>label.contentview.accuse_de_receptions_content</title>
+      <translateTitle>true</translateTitle>
+      <showTitle>false</showTitle>
+      <coreQueryPageProvider>
+        <property name="coreSession">#{documentManager}</property>
+        <property name="maxResults">DEFAULT_NAVIGATION_RESULTS</property>
+        <whereClause docType="accuse_de_reception_search">
+		<predicate parameter="adr:motif" operator="FULLTEXT ALL">
+            <field schema="accuse_de_reception_search" name="motif" />
+          </predicate>
+		<predicate parameter="adr:statut_fact" operator="ILIKE">
+            <field schema="accuse_de_reception_search" name="statut_fact" />
+          </predicate>
+		  <predicate parameter="adr:nom_client" operator="FULLTEXT ALL">
+            <field schema="accuse_de_reception_search" name="nom_client" />
+          </predicate>
+          <predicate parameter="adr:num_facture" operator="ILIKE">
+            <field schema="accuse_de_reception_search" name="num_facture" />
+          </predicate>
+          <predicate parameter="dc:num_bc" operator="ILIKE">
+            <field schema="accuse_de_reception_search" name="dublincore_num_bc" />
+          </predicate>
+		  <predicate parameter="adr:date_comptabilisation" operator="BETWEEN">
+            <field schema="accuse_de_reception_search" name="date_comptabilisation_min" />
+			<field schema="accuse_de_reception_search" name="date_comptabilisation_max" />
+          </predicate>
+          <predicate parameter="adr:date_echeance" operator="=">
+            <field schema="accuse_de_reception_search" name="date_echeance" />
+          </predicate>
+		  <predicate parameter="adr:client" operator="FULLTEXT ALL">
+            <field schema="accuse_de_reception_search" name="client" />
+          </predicate>
+          <predicate parameter="adr:agent" operator="FULLTEXT ALL">
+            <field schema="accuse_de_reception_search" name="agent" />
+          </predicate>
+		  <predicate parameter="adr:ville" operator="FULLTEXT ALL">
+            <field schema="accuse_de_reception_search" name="ville" />
+          </predicate>
+		  <predicate parameter="adr:montant" operator="=">
+            <field schema="accuse_de_reception_search" name="montant" />
+          </predicate>
+		  <predicate parameter="adr:code_article" operator="ILIKE">
+            <field schema="accuse_de_reception_search" name="code_article" />
+          </predicate>
+         <predicate parameter="typeocr:ocr" operator="FULLTEXT ALL">
+            <field schema="type_ocr" name="ocr" />
+          </predicate>
+          <fixedPart>
+                ecm:isCheckedInVersion = 0 AND
+				ecm:mixinType != 'HiddenInNavigation' AND 
+				ecm:currentLifeCycleState != 'deleted' AND ecm:parentId = ? AND
+				ecm:primaryType = 'accuse_de_reception' 
+          </fixedPart>
+			<sort column="dc:title" ascending="true" />
+         
+		
+        </whereClause>
+		
+        <parameter>#{currentDocument.id}</parameter>
+		<pageSize>20</pageSize>		
+      </coreQueryPageProvider>
+
+      <showPageSizeSelector>true</showPageSizeSelector>
+      <useGlobalPageSize>false</useGlobalPageSize>
+      <refresh>
+        <event>documentChanged</event>
+        <event>documentChildrenChanged</event>
+      </refresh>
+      <cacheKey>#{currentDocument.repositoryName}_#{currentDocument.id}</cacheKey>
+      <cacheSize>10</cacheSize>
+
+      <searchLayout name="accuse_de_reception_filter" filterDisplayType="quick" />
+      <showFilterForm>true</showFilterForm>
+
+      <resultLayouts>
+        <layout name="accuse_de_reception_listing_ajax" title="document_listing"
+          translateTitle="true" iconPath="/icons/document_listing_icon.png"
+          showCSVExport="true" showPDFExport="false" showEditColumns="true" 
+          showSyndicationLinks="true" />
+		  <layout iconPath="/icons/document_listing_icon_2_columns_icon.png" 
+		  name="document_listing_thumbnail" showEditRows="true" 
+		  showSpreadsheet="true" title="document_thumbnail_listing" 
+		  translateTitle="true" />
+      </resultLayouts>
+
+      <selectionList>CURRENT_SELECTION</selectionList>
+      <actions category="CURRENT_SELECTION_LIST" />
+    </contentView>
+   
+   <contentView name="parent_reglement_content">
+
+      <title>label.contentview.reglements_content</title>
+      <translateTitle>true</translateTitle>
+      <showTitle>false</showTitle>
+
+      <coreQueryPageProvider>
+        <property name="coreSession">#{documentManager}</property>
+        <property name="maxResults">DEFAULT_NAVIGATION_RESULTS</property>
+        <whereClause docType="reglement_search">
+          <predicate parameter="rgl:nom_client" operator="FULLTEXT ALL">
+            <field schema="reglement_search" name="nom_client" />
+          </predicate>
+	      <predicate parameter="rgl:montant" operator="=">
+	            <field schema="reglement_search" name="montant" />
+	          </predicate>
+	      <predicate parameter="rgl:mode_de_reglement" operator="ILIKE">
+	            <field schema="reglement_search" name="mode_de_reglement" />
+	          </predicate>
+	      <predicate parameter="rgl:date" operator="=">
+	            <field schema="reglement_search" name="date" />
+	      </predicate>
+	     <predicate parameter="typeocr:ocr" operator="FULLTEXT ALL">
+            <field schema="type_ocr" name="ocr" />
+          </predicate>
+          <fixedPart>
+                ecm:isCheckedInVersion = 0 AND
+		        ecm:mixinType != 'HiddenInNavigation' AND 
+		        ecm:currentLifeCycleState != 'deleted' AND ecm:parentId = ? AND
+		        ecm:primaryType = 'reglement' 
+          </fixedPart>
+      <sort column="dc:title" ascending="true" />
+            
+        </whereClause>
+        <parameter>#{currentDocument.id}</parameter>
+		<pageSize>20</pageSize> 
+      </coreQueryPageProvider>
+
+      <showPageSizeSelector>true</showPageSizeSelector>
+      <useGlobalPageSize>true</useGlobalPageSize>
+      <refresh>
+        <event>documentChanged</event>
+        <event>documentChildrenChanged</event>
+      </refresh>
+      <cacheKey>#{currentDocument.repositoryName}_#{currentDocument.id}</cacheKey>
+      <cacheSize>10</cacheSize>
+
+      <searchLayout name="reglement_filter" filterDisplayType="quick" />
+      <showFilterForm>true</showFilterForm>
+
+      <resultLayouts>
+        <layout name="reglement_listing_ajax" title="document_listing"
+          translateTitle="true" iconPath="/icons/document_listing_icon.png"
+          showCSVExport="true" showPDFExport="false" showEditColumns="true"
+          showSyndicationLinks="true" />
+		  <layout iconPath="/icons/document_listing_icon_2_columns_icon.png" 
+		  name="document_listing_thumbnail" showEditRows="true" 
+		  showSpreadsheet="true" title="document_thumbnail_listing" 
+		  translateTitle="true" />
+      </resultLayouts>
+
+      <selectionList>CURRENT_SELECTION</selectionList>
+      <actions category="CURRENT_SELECTION_LIST" />
+    </contentView>
+
+
+
+
+<!--/AirLiquide -->
+    <contentView name="book_content">
+
+      <title>label.contentview.book_content</title>
+      <translateTitle>true</translateTitle>
+      <showTitle>true</showTitle>
+
+      <coreQueryPageProvider>
+        <property name="coreSession">#{documentManager}</property>
+        <property name="maxResults">DEFAULT_NAVIGATION_RESULTS</property>
+        <parameter>#{currentDocument.id}</parameter>
+        <pattern>
+          SELECT * FROM Document WHERE ecm:parentId = ? AND
+          ecm:isCheckedInVersion = 0 AND
+          ecm:mixinType !=
+          'HiddenInNavigation'
+          AND ecm:currentLifeCycleState != 'deleted'
+        </pattern>
+        <sort column="dc:title" ascending="true" />
+        <pageSize>20</pageSize>
+      </coreQueryPageProvider>
+
+      <showPageSizeSelector>true</showPageSizeSelector>
+      <useGlobalPageSize>true</useGlobalPageSize>
+      <refresh>
+        <event>documentChanged</event>
+        <event>documentChildrenChanged</event>
+      </refresh>
+      <cacheKey>#{currentDocument.repositoryName}_#{currentDocument.id}</cacheKey>
+      <cacheSize>10</cacheSize>
+
+      <resultLayouts>
+        <layout name="book_listing_ajax" title="document_listing"
+          translateTitle="true" iconPath="/icons/document_listing_icon.png"
+          showCSVExport="true" showPDFExport="false"
+          showSyndicationLinks="true" />
+      </resultLayouts>
+
+      <selectionList>CURRENT_SELECTION</selectionList>
+      <actions category="CURRENT_SELECTION_LIST" />
+
+    </contentView>
+
+    <contentView name="parent_books_content">
+
+      <title>label.contentview.books_content</title>
+      <translateTitle>true</translateTitle>
+      <showTitle>true</showTitle>
+
+      <coreQueryPageProvider>
+        <property name="coreSession">#{documentManager}</property>
+        <property name="maxResults">DEFAULT_NAVIGATION_RESULTS</property>
+        <whereClause docType="BookSearch">
+          <predicate parameter="bk:keywords" operator="=">
+            <field schema="book_search" name="keyword" />
+          </predicate>
+          <fixedPart>
+            ecm:primaryType = 'Book' AND ecm:path STARTSWITH ?
+          </fixedPart>
+        </whereClause>
+        <parameter>#{bookManager.containerPath}</parameter>
+        <sort column="dc:title" ascending="true" />
+        <pageSize>20</pageSize>
+      </coreQueryPageProvider>
+
+      <showPageSizeSelector>true</showPageSizeSelector>
+      <useGlobalPageSize>true</useGlobalPageSize>
+      <refresh>
+        <event>documentChanged</event>
+        <event>documentChildrenChanged</event>
+      </refresh>
+      <cacheKey>#{currentDocument.repositoryName}_#{currentDocument.id}</cacheKey>
+      <cacheSize>10</cacheSize>
+
+      <searchLayout name="book_filter" filterDisplayType="quick" />
+      <showFilterForm>true</showFilterForm>
+
+      <resultLayouts>
+        <layout name="book_listing_ajax" title="document_listing"
+          translateTitle="true" iconPath="/icons/document_listing_icon.png"
+          showCSVExport="true" showPDFExport="false"
+          showSyndicationLinks="true" />
+      </resultLayouts>
+
+      <selectionList>CURRENT_SELECTION</selectionList>
+      <actions category="CURRENT_SELECTION_LIST" />
+
+    </contentView>
+  </extension>
+</component>

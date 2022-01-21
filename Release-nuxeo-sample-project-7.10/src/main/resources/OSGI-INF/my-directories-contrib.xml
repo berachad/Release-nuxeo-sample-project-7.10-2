@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<component name="org.my.ecm.directories"> 
+  <require>org.nuxeo.ecm.directories</require>
+
+  <extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
+    point="directories">
+
+		
+
+  </extension>
+
+</component>

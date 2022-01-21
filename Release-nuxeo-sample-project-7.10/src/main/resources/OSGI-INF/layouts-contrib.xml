@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.project.sample.layouts">
+
+  <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+    point="widgets">
+
+    <widget name="search_book_keyword" type="suggestOneDirectory">
+      <labels>
+        <label mode="any">Keyword</label>
+      </labels>
+      <translated>false</translated>
+      <fields>
+        <field>book_search:keyword</field>
+      </fields>
+      <properties mode="any">
+        <property name="width">300</property>
+        <property name="minChars">0</property>
+        <property name="directoryName">book_keywords</property>
+      </properties>
+    </widget>
+
+    <widget name="listing_rating" type="text">
+      <labels>
+        <label mode="any">Rating</label>
+      </labels>
+      <translated>true</translated>
+      <fields>
+        <field>data.bk.rating</field>
+      </fields>
+    </widget>
+
+    <widget name="listing_keywords" type="list">
+      <labels>
+        <label mode="any">Keywords</label>
+      </labels>
+      <translated>false</translated>
+      <fields>
+        <field>data.bk.keywords</field>
+      </fields>
+      <properties widgetMode="any">
+        <property name="hideSubLabels">true</property>
+      </properties>
+      <subWidgets>
+        <widget name="listItem" type="selectOneDirectory">
+          <fields>
+            <field></field>
+          </fields>
+          <properties mode="any">
+            <property name="directoryName">book_keywords</property>
+          </properties>
+          <labels>
+            <label mode="any"></label>
+          </labels>
+        </widget>
+      </subWidgets>
+    </widget>
+    
+     <widget name="num_bc" type="text">
+			<labels>
+				<label mode="any">labe.numero.bc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:num_bc</field>
+			</fields>
+		</widget>
+
+		<widget name="ocr" type="textarea">
+			<labels>
+				<label mode="any">ocr</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>typeocr:ocr</field>
+			</fields>
+		</widget>
+		
+		<widget name="search_accuse_de_reception_motif" type="template">
+			<labels>
+				<label mode="any">Motif</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:motif</field>
+			</fields>
+			<properties mode="any">
+				<property name="template">
+					/widgets/select_motif.xhtml
+				</property>
+			</properties>
+		</widget>
+		<widget name="search_accuse_de_reception_statut_fact"
+			type="template">
+			<labels>
+				<label mode="any">Statut</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:statut_fact</field>
+			</fields>
+			<properties mode="any">
+				<property name="template">
+					/widgets/select_flavor_widget_motif88.xhtml
+				</property>
+			</properties>
+		</widget>
+		<widget name="search_accuse_de_reception_nom_client"
+			type="text">
+			<labels>
+				<label mode="any">Nom client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:nom_client</field>
+			</fields>
+		</widget>
+		<widget name="search_accuse_de_reception_ocr" type="text">
+			<labels>
+				<label mode="any">ocr</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>typeocr:ocr</field>
+			</fields>
+		</widget>
+		<widget name="search_accuse_de_reception_num_bc" type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.num_bc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:dublincore_num_bc</field>
+			</fields>
+		</widget>
+
+
+		<widget name="search_accuse_de_reception_num_facture"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.num_facture</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:num_facture</field>
+			</fields>
+		</widget>
+
+		<widget
+			name="search_accuse_de_reception_date_comptabilisation_min"
+			type="datetime">
+			<labels>
+				<label mode="any">Date de comptabilisation du </label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:date_comptabilisation_min</field>
+			</fields>
+		</widget>
+
+		<widget
+			name="search_accuse_de_reception_date_comptabilisation_max"
+			type="datetime">
+			<labels>
+				<label mode="any">AU</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:date_comptabilisation_max</field>
+			</fields>
+		</widget>
+		<widget name="search_accuse_de_reception_date_echeance"
+			type="datetime">
+			<labels>
+				<label mode="any">label.accuse_de_reception.date_echeance</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:date_echeance</field>
+			</fields>
+		</widget>
+
+
+		<widget name="search_accuse_de_reception_montant" type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.montant</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:montant</field>
+			</fields>
+		</widget>
+
+		<widget name="search_accuse_de_reception_code_article"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.code_article</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:code_article</field>
+			</fields>
+		</widget>
+
+		<widget name="search_accuse_de_reception_client" type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:client</field>
+			</fields>
+		</widget>
+		
+		<widget name="search_accuse_de_reception_agent"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.agent</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:agent</field>
+			</fields>
+		</widget>
+
+		<widget name="search_accuse_de_reception_ville" type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.ville</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>adrs:ville</field>
+			</fields>
+		</widget>
+		<widget name="listing_accuse_de_reception_motif_link"
+			type="text">
+			<labels>
+				<label mode="any">Motif</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.motif</field>
+			</fields>
+		</widget>
+		<widget name="listing_accuse_de_reception_statut_fact_link"
+			type="text">
+			<labels>
+				<label mode="any">Statut</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.statut_fact</field>
+			</fields>
+		</widget>
+		<widget name="listing_accuse_de_reception_nom_client_link"
+			type="text">
+			<labels>
+				<label mode="any">Nom client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.nom_client</field>
+			</fields>
+		</widget>
+		<widget name="listing_accuse_de_reception_num_facture_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.num_facture</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.num_facture</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_client_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.client</field>
+			</fields>
+		</widget>
+		
+		<widget name="listing_accuse_de_reception_agent_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.agent</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.agent</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_num_bc_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.num_bc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.dc.num_bc</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_ville_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.ville</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.ville</field>
+			</fields>
+		</widget>
+
+		<widget
+			name="listing_accuse_de_reception_date_comptabilisation_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.date_comptabilisation
+				</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.date_comptabilisation</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_date_echeance_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.date_echeance</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.date_echeance</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_montant_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.montant</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.montant</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_accuse_de_reception_code_article_link"
+			type="text">
+			<labels>
+				<label mode="any">label.accuse_de_reception.code_article</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.adr.code_article</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_reglement_nom_client_link" type="text">
+			<labels>
+				<label mode="any">label.reglement.nom_client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.rgl.nom_client</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_reglement_montant_link" type="text">
+			<labels>
+				<label mode="any">label.reglement.montant</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.rgl.montant</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_reglement_mode_de_reglement_link"
+			type="text">
+			<labels>
+				<label mode="any">label.reglement.mode_de_reglement</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.rgl.mode_de_reglement</field>
+			</fields>
+		</widget>
+
+		<widget name="listing_reglement_date_link" type="text">
+			<labels>
+				<label mode="any">label.reglement.date</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.rgl.date</field>
+			</fields>
+		</widget>
+
+		<widget name="search_reglement_ocr" type="text">
+			<labels>
+				<label mode="any">ocr</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>typeocr:ocr</field>
+			</fields>
+		</widget>
+		<widget name="search_reglement_nom_client" type="text">
+			<labels>
+				<label mode="any">label.reglement.nom_client</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rgls:nom_client</field>
+			</fields>
+		</widget>
+
+		<widget name="search_reglement_montant" type="text">
+			<labels>
+				<label mode="any">label.reglement.montant</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rgls:montant</field>
+			</fields>
+		</widget>
+
+		<widget name="search_reglement_mode_de_reglement" type="text">
+			<labels>
+				<label mode="any">label.reglement.mode_de_reglement</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rgls:mode_de_reglement</field>
+			</fields>
+		</widget>
+
+		<widget name="search_reglement_date" type="datetime">
+			<labels>
+				<label mode="any">label.reglement.date</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rgls:date</field>
+			</fields>
+		</widget>
+		
+<!-- AirLiquide -->
+
+		<!-- /AirLiquide -->
+  </extension>
+
+  <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+    point="layouts">
+    <!-- AirLiquide -->
+		<!-- /AirLiquide -->
+    <layout name="book">
+      <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml
+        </template>
+      </templates>
+      <rows>
+        <row>
+          <widget>isbn</widget>
+          <widget>pubdate</widget>
+        </row>
+      </rows>
+      <widget name="isbn" type="text">
+        <labels>
+          <label mode="any">ISBN</label>
+        </labels>
+        <translated>false</translated>
+        <fields>
+          <field>bk:isbn</field>
+        </fields>
+        <widgetModes>
+          <mode value="create">edit</mode>
+          <mode value="any">view</mode>
+        </widgetModes>
+      </widget>
+      <widget name="pubdate" type="datetime">
+        <labels>
+          <label mode="any">Publication date</label>
+        </labels>
+        <translated>false</translated>
+        <fields>
+          <field>bk:publicationDate</field>
+        </fields>
+        <widgetModes>
+          <mode value="any">edit</mode>
+        </widgetModes>
+      </widget>
+    </layout>
+
+    <layout name="book_listing_ajax">
+      <templates>
+        <template mode="any">
+          /layouts/layout_listing_ajax_template.xhtml
+        </template>
+        <template mode="csv">
+          /layouts/layout_listing_csv_template.xhtml
+        </template>
+        <template mode="pdf">
+          /layouts/layout_listing_pdf_template.xhtml
+        </template>
+      </templates>
+      <properties mode="any">
+        <property name="showListingHeader">true</property>
+        <property name="showRowEvenOddClass">true</property>
+        <property name="display">table</property>
+      </properties>
+      <columns>
+        <column>
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="sortPropertyName">dc:title</property>
+          </properties>
+          <widget>listing_title_link</widget>
+        </column>
+        <column>
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="isSortable">false</property>
+          </properties>
+          <widget>listing_keywords</widget>
+        </column>
+        <column>
+          <properties mode="any">
+            <property name="useFirstWidgetLabelAsColumnHeader">true</property>
+            <property name="sortPropertyName">bk:rating</property>
+          </properties>
+          <widget>listing_rating</widget>
+        </column>
+      </columns>
+    </layout>
+    
+    <layout name="book_filter">
+       <templates>
+        <template mode="any">/layouts/layout_default_template.xhtml
+        </template>
+      </templates>
+      <rows>
+        <row>
+          <widget>search_book_keyword</widget>
+        </row>
+      </rows>   
+    </layout>
+
+  </extension>
+
+</component>

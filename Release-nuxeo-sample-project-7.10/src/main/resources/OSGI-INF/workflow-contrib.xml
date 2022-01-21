@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension target="org.nuxeo.ecm.platform.jbpm.core.JbpmService"
+   point="typeFilter">
+    <type name="bc">
+     <processDefinition>review_parallel</processDefinition>
+     <processDefinition>review_approbation</processDefinition>
+   </type>
+    <type name="accuse_de_reception">
+     <processDefinition>review_parallel</processDefinition>
+     <processDefinition>review_approbation</processDefinition>
+   </type>
+   <type name="facture">
+     <processDefinition>review_parallel</processDefinition>
+     <processDefinition>review_approbation</processDefinition>
+   </type>
+   <type name="reglement">
+     <processDefinition>review_parallel</processDefinition>
+     <processDefinition>review_approbation</processDefinition>
+   </type>
+</extension>
