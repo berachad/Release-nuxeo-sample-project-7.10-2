@@ -4,7 +4,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 public class Mail {
-
+  
 	 public static void send(String to, String FirstName, 
              String LastName, String Entreprise,String Email, String PassWord, String ConformPassword, String Subject) {
 	 
