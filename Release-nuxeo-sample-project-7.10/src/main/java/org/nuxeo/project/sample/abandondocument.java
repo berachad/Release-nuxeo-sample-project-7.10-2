@@ -100,6 +100,8 @@ public class abandondocument {
 	        session.saveDocument(doc);
 			session.save();
 		}
+		
+		//TEST
 	}
 
 }
